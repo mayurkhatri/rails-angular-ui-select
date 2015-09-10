@@ -1,0 +1,32 @@
+<html lang="en" ng-app="AngularUiDemo">
+	<head>
+		<title>Angular UI Demo</title>
+     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+
+		<link rel="stylesheet" href="bower_components/angular/angular-csp.css">
+		<link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
+		<script src="bower_components/angular/angular.js" type="text/javascript"></script>
+		<script src="bower_components/angular-ui-select/dist/select.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-sanitize.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  		<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+  		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+		<script src="javascript/thalaiva/welcomeFile.js" type="text/javascript"></script>
+	</head>
+	<body>
+	  	<div ng-controller="welcomeCtrl">
+        <div class="form-group">
+          <label for="doctorName" class="control-label col-sm-5">Movie Name: </label>
+          <div class="col-sm-7">
+            <ui-select ng-model="movie.selected" theme="bootstrap" ng-disabled="disabled" on-select="getLocations(movie.selected.id)" style="width:auto">
+              <ui-select-match placeholder="----- Select -----" allow-clear="true">{{$select.selected.name}}</ui-select-match>
+              <ui-select-choices repeat="movie in movies | propsFilter: {name: $select.search}">
+                <div ng-bind-html="movie.name | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+	  	</div>
+	  	<h1>Hi</h1>
+	</body>
+</html>
