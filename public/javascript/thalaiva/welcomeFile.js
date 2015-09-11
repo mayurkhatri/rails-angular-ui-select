@@ -1,4 +1,4 @@
-var application = angular.module('AngularUiDemo', ['ngSanitize', 'ui.select']);
+var application = angular.module('AngularUiDemo', ['ngSanitize', 'ui.select', 'ui.calendar']);
   application.filter('propsFilter', function() {
     return function(items, props) {
       var out = [];
@@ -31,7 +31,24 @@ var application = angular.module('AngularUiDemo', ['ngSanitize', 'ui.select']);
   });
 
   application.controller('welcomeCtrl', function($scope){
-  	$scope.movies = [{id:1, name: 'abc'}, {id:2, name: 'bbc'}]
+    // Config for ui-calendar
+    $scope.uiConfig = {
+      calendar:{
+        height: 450,
+        editable: true,
+        header:{
+          left: 'month basicWeek basicDay agendaWeek agendaDay',
+          center: 'title',
+          right: 'today prev,next'
+        },
+        dayClick: $scope.alertEventOnClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize
+      }
+    };
+    $scope.eventSources = [];
+
+  	$scope.movies = [{id:1, name: 'abc'}, {id:2, name: 'bbc'}, {id:3, name: 'ccd'}, {id:4, name: 'ccc'}]
     $scope.getLocations = function(id){
       console.log("In get locations",id);
     }
